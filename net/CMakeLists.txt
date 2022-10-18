@@ -3,15 +3,21 @@ cmake_minimum_required(VERSION 3.10)
 project(net)
 
 set(CMAKE_CXX_STANDARD 17)
+
+if(BUILD_FOR_TEST)
+set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} "-fprofile-arcs -ftest-coverage -fPIC -O0")
+endif()
+
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-Wall -Wextra -Wpedantic -Werror")
 
-file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/client/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/server/*.cpp)
-file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/client/*.hpp ${CMAKE_CURRENT_SOURCE_DIR}/server/*.hpp)
+file(GLOB SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/client/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/server/*.cpp)
+file(GLOB INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/client ${CMAKE_CURRENT_SOURCE_DIR}/server)
 
 message("SOURCES = ${SOURCES}")
-message("HEADERS = ${HEADERS}")
+message("INCLUDE_DIRS = ${INCLUDE_DIRS}")
 
-add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+add_library(${PROJECT_NAME} ${SOURCES} ${INCLUDE_DIRS})
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/client ${CMAKE_CURRENT_SOURCE_DIR}/server)
 
 #set(NET_LIB ${PROJECT_NAME} PARENT_SCOPE)
 #set(NET_INCLUDE_DIRS ${INCLUDE_DIRS} PARENT_SCOPE)
