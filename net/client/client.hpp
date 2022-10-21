@@ -1,4 +1,4 @@
-#pragma once  // NOLINT
+#pragma once // NOLINT
 
 #define SUCCESS_FLG 0
 
@@ -7,8 +7,8 @@
 namespace project {
 
 struct Client {
-    Client();
-    static int connectToServer();
+  Client();
+  static int connectToServer();
 };
 
-}
+}  // namespace project
