@@ -9,7 +9,8 @@ clean:
 
 build:
 	set -e
-
+	
+	cd business_logic
 	mkdir -p build
 	cd build
 	cmake "$@" ..
@@ -21,5 +22,3 @@ run: ${TARGET}
 	${TARGET}
 
 
-refactor:
-	clang-format -i net/server/* net/client/* tests/*.cpp

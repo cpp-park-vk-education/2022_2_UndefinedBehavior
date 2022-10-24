@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.10)
 
 project(YourCollection)
 
+ file(GLOB SOURCES "*.cpp")
+
+add_executable(${PROJECT_NAME} ${SOURCES})
 OPTION(WITH_MEMCHECK "Run with memcheck" OFF)
 OPTION(BUILD_FOR_TEST "build_for_test" OFF)
 
