@@ -10,7 +10,7 @@ if(BUILD_FOR_TEST)
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -coverage -lgcov" )
 endif()
 
-enable_testing()
+#enable_testing()
 
 
 

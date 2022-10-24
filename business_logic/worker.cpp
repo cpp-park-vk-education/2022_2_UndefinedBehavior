@@ -8,7 +8,7 @@
 using namespace System::Data::SqlClient;
 
 // класс данных
-class Data(){
+/*class Data(){
     public:
 	    SqlConnection^ Con;
 	    DataTable ^dtTags;
@@ -35,4 +35,4 @@ class Form(){
 		 dgvFirms->DataSource = dtTag;
     		 dgvFirms->AutoGenerateColumns = false;
 		}
-};
+};*/

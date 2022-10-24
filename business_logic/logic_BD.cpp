@@ -9,7 +9,7 @@ using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-MYSQL *conn;
+/*MYSQL *conn;
 // Получаем дескриптор соединения
 conn = mysql_init(NULL);
 if(conn == NULL)
@@ -34,5 +34,5 @@ fprintf(stdout, "Success!\n");
 mysql_close(conn);
 
 system("Pause");
-return 0;
+return 0;*/
 }

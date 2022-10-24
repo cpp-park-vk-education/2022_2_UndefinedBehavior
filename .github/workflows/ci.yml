@@ -1,40 +1,20 @@
 on: [push, pull_request]
 
-
-env:
-  BUILD_TYPE: Release
-
 jobs:
-
+  check:
+    runs-on: ubuntu-latest
+    container: leshiy1295/gcc_linters_valgrind_cmake_gtest
+    steps:
+      - uses: actions/checkout@v3 
+      - run: |
+          cd business_logic
+          make check
   build:
-   
     runs-on: ubuntu-latest
-
     container: leshiy1295/gcc_linters_valgrind_cmake_gtest
-
+    needs: [check]
     steps:
-    - uses: actions/checkout@v3
-
-    - name: Configure CMake
-  
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-
-    - name: Build
-
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
-  
-  test:
-
-    runs-on: ubuntu-latest
-
-    container: leshiy1295/gcc_linters_valgrind_cmake_gtest
-
-    needs: [build]
-    
-    steps:
-
-    - name: Test
-
-      working-directory: ${{github.workspace}}/build
-
-      run: ctest -C ${{env.BUILD_TYPE}}
+      - uses: actions/checkout@v3 
+      - run: | 
+            cd business_logic
+            make build
