@@ -13,9 +13,7 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${APP_LIB_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} ${APP_LIB_LIBRARIES} GTest::gtest_main)
 
-# add_test(
-#     NAME ${PROJECT_NAME}
-#     COMMAND ${PROJECT_NAME}
-# )
-
-gtest_discover_tests(${PROJECT_NAME})
+add_test(
+    NAME ${PROJECT_NAME}
+     COMMAND ${PROJECT_NAME}
+)
