@@ -9,8 +9,7 @@ clean:
 
 build:
 	set -e
-	
-	cd business_logic
+
 	mkdir -p build
 	cd build
 	cmake "$@" ..
