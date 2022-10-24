@@ -1,4 +1,4 @@
-TARGET = ./build/CMakeLists.txt
+TARGET = ./business_logic
 
 .PHONY: all build rebuild run clean
 
