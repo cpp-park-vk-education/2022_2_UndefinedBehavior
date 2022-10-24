@@ -2,7 +2,7 @@ name: appCMake
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "DanyaLyubimov" ]
   pull_request:
     branches: [ "main" ]
 
