@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 
 project(YourCollection)
 
-file(GLOB SOURCES "*.cpp")
+file(GLOB SOURCES "logic_BD.cpp")
 file(GLOB INCLUDE_DIRS business_logic)
 
 add_executable(${PROJECT_NAME} ${SOURCES})

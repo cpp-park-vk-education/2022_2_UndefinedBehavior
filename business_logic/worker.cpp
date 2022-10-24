@@ -1,9 +1,6 @@
-#include "stdafx.h"
-#include <iostream.h>
-#include <conio.h>
-#include <stdlib.h>
-#include <mysql.h>
-#include<stdio.h>
+
+#include <iostream>
+
 
 using namespace System::Data::SqlClient;
 
@@ -36,3 +33,6 @@ class Form(){
     		 dgvFirms->AutoGenerateColumns = false;
 		}
 };*/
+int main(int argc){
+    //
+}

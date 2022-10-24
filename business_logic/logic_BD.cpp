@@ -1,13 +1,9 @@
-#include "stdafx.h"
-#include <iostream.h>
-#include <conio.h>
-#include <stdlib.h>
-#include <mysql.h>
-#include<stdio.h>
+
+#include <iostream>
 
 using namespace std;
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc)
 {
 /*MYSQL *conn;
 // Получаем дескриптор соединения
