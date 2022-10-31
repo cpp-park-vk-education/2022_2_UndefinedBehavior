@@ -6,8 +6,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3 
       - run: |
-          docker build . -f myPart/Dockerfile -t yourColImage
-          docker run -d -it yourColImage bash
+          docker build . -f myPart/Dockerfile -t your_collection_image
+          docker run -d -it your_collection_image bash
           cd myPart
           make check
   build:
@@ -16,8 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3 
       - run: |
-            docker build . -f myPart/Dockerfile -t yourColImage
-            docker run -d -it yourColImage bash
+            docker build . -f myPart/Dockerfile -t your_collection_image
+            docker run -d -it your_collection_image bash
             cd myPart 
             make build
   test:
@@ -26,8 +26,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-            docker build . -f myPart/Dockerfile -t yourColImage
-            docker run -d -it yourColImage bash
+            docker build . -f myPart/Dockerfile -t your_collection_image
+            docker run -d -it your_collection_image bash
             cd myPart
             make test
       - name: save server report artifact
@@ -42,8 +42,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3 
       - run: |
-            docker build . -f myPart/Dockerfile -t yourColImage
-            docker run -d -it yourColImage bash
+            docker build . -f myPart/Dockerfile -t your_collection_image
+            docker run -d -it your_collection_image bash
             cd myPart
             make memtest
       - name: save valgrind logs artifact
