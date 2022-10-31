@@ -1,21 +1,16 @@
-cmake_minimum_required(VERSION 3.14)
-project(appTest)
+cmake_minimum_required(VERSION 3.0.0)
+project(Test)
 
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-fprofile-arcs -ftest-coverage -O0")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -coverage -lgcov") 
+enable_testing()
+
+set(CMAKE_CXX_STANDARD 20)
 
 file(GLOB SOURCES *.cpp)
 
 find_package(GTest REQUIRED)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
-target_include_directories(${PROJECT_NAME} PUBLIC ${APP_LIB_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} ${APP_LIB_LIBRARIES} GTest::gtest_main)
-
-# add_test(
-#     NAME ${PROJECT_NAME}
-#     COMMAND ${PROJECT_NAME}
-# )
+target_link_libraries(${PROJECT_NAME} ${CLIENT_LIB_LIBRARIES} ${SERVER_LIB_LIBRARIES} GTest::gtest_main)
+target_include_directories(${PROJECT_NAME} PUBLIC ${CLIENT_LIB_INCLUDE_DIRS} PUBLIC ${SERVER_LIB_INCLUDE_DIRS})
 
 gtest_discover_tests(${PROJECT_NAME})

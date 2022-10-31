@@ -6,9 +6,10 @@
 
 namespace project {
 
-struct Server {
-  Server();
-  static int run();
-};
+  struct Server {
+    Server() {std::cout << "Create server" << std::endl;} 
+    static int run();
+    ~Server() {std::cout << "Delete server" << std::endl;}
+  };
 
 }  // namespace project

@@ -8,6 +8,9 @@ int main(int argc, char* argv[]) {
 
     project::Client client;
     client.connectToServer();
+    
+    delete &client;
+    delete &server;
 
     return 0;
 }
