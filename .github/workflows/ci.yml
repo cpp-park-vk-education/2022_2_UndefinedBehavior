@@ -1,0 +1,29 @@
+on: push
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    container: leshiy1295/gcc_linters
+    steps:
+      - uses: actions/checkout@v2 
+      - run: |
+          cd project
+          make check
+  build:
+    runs-on: ubuntu-latest
+    container: leshiy1295/gcc_linters
+    needs: [check]
+    steps:
+    - uses: actions/checkout@v2 
+    - run:  |
+          cd project
+          make build
+  test:
+    runs-on: ubuntu-latest
+    container: leshiy1295/gcc_linters
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v2 
+      - run:  |
+            cd project
+            make test
