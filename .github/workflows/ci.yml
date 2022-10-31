@@ -3,47 +3,51 @@ on: [push, pull_request]
 jobs:
   check:
     runs-on: ubuntu-latest
-    container: leshiy1295/gcc_linters_valgrind_cmake_gtest
     steps:
       - uses: actions/checkout@v3 
       - run: |
+          docker build . -f myPart/Dockerfile -t yourColImage
+          docker run -d -it yourColImage bash
           cd myPart
           make check
   build:
     runs-on: ubuntu-latest
-    container: leshiy1295/gcc_linters_valgrind_cmake_gtest
     needs: [check]
     steps:
       - uses: actions/checkout@v3 
-      - run: | 
+      - run: |
+            docker build . -f myPart/Dockerfile -t yourColImage
+            docker run -d -it yourColImage bash
             cd myPart 
             make build
   test:
     runs-on: ubuntu-latest
-    container: leshiy1295/gcc_linters_valgrind_cmake_gtest
     needs: [build]
     steps:
       - uses: actions/checkout@v3
       - run: |
+            docker build . -f myPart/Dockerfile -t yourColImage
+            docker run -d -it yourColImage bash
             cd myPart
             make test
       - name: save server report artifact
         uses: actions/upload-artifact@v3
         with:
           name: report
-          path: ./build/report/
+          path: ./myPart/build/report/
 
   memtest:
     runs-on: ubuntu-latest
-    container: leshiy1295/gcc_linters_valgrind_cmake_gtest
     needs: [build]
     steps:
       - uses: actions/checkout@v3 
-      - run: | 
+      - run: |
+            docker build . -f myPart/Dockerfile -t yourColImage
+            docker run -d -it yourColImage bash
             cd myPart
             make memtest
       - name: save valgrind logs artifact
         uses: actions/upload-artifact@v3
         with:
           name: valgrind
-          path: ./valgrind.log
+          path: ./myPart/valgrind.log
