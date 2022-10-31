@@ -3,31 +3,28 @@ on: [push, pull_request]
 jobs:
   check:
     runs-on: ubuntu-latest
+    container: godofrussia/your_collection
     steps:
       - uses: actions/checkout@v3 
       - run: |
-          docker build . -f myPart/Dockerfile -t your_collection_image
-          docker run -d -it your_collection_image bash
           cd myPart
           make check
   build:
     runs-on: ubuntu-latest
+    container: godofrussia/your_collection
     needs: [check]
     steps:
       - uses: actions/checkout@v3 
       - run: |
-            docker build . -f myPart/Dockerfile -t your_collection_image
-            docker run -d -it your_collection_image bash
             cd myPart 
             make build
   test:
     runs-on: ubuntu-latest
+    container: godofrussia/your_collection
     needs: [build]
     steps:
       - uses: actions/checkout@v3
       - run: |
-            docker build . -f myPart/Dockerfile -t your_collection_image
-            docker run -d -it your_collection_image bash
             cd myPart
             make test
       - name: save server report artifact
@@ -38,12 +35,11 @@ jobs:
 
   memtest:
     runs-on: ubuntu-latest
+    container: godofrussia/your_collection
     needs: [build]
     steps:
       - uses: actions/checkout@v3 
       - run: |
-            docker build . -f myPart/Dockerfile -t your_collection_image
-            docker run -d -it your_collection_image bash
             cd myPart
             make memtest
       - name: save valgrind logs artifact
