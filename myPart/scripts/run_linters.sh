@@ -22,12 +22,12 @@ function check_log() {
 }
 
 print_header "RUN cppcheck"
-check_log "cppcheck net start tests --enable=all --inconclusive --error-exitcode=1 -I net/client/ -I net/server/ --suppress=missingIncludeSystem" "\(information\)"
+check_log "cppcheck net start tests --enable=all --inconclusive --error-exitcode=1 -I net/server/ --suppress=missingIncludeSystem" "\(information\)"
 
 print_header "RUN clang-tidy"
-check_log "clang-tidy start/* net/client/* net/server/* -warnings-as-errors=* -- -x c++ -I net/client/ -I net/server/" "Error (?:reading|while processing)"
+check_log "clang-tidy start/* net/server/* -warnings-as-errors=* -- -x c++ -I net/server/" "Error (?:reading|while processing)"
 
 print_header "RUN cpplint"
-check_log "cpplint --extensions=cpp start/* net/client/* net/server/*" "Can't open for reading"
+check_log "cpplint --extensions=cpp start/* net/server/*" "Can't open for reading"
 
 print_header "SUCCESS"

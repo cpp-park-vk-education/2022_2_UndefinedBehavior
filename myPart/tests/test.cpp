@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 
-#include <client.hpp>
 #include <server.hpp>
 
 class ServerTest : ::testing::Test {};

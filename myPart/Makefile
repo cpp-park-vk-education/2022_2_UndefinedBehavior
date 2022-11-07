@@ -8,7 +8,7 @@ clean:
 	rm -rf build
 
 build:
-	./scripts/build.sh -DBUILD_FOR_TEST=OFF
+	./scripts/build.sh -DBUILD_FOR_TEST=OFF -DWITH_MEMCHECK=OFF
 
 rebuild: clean build
 
@@ -22,6 +22,7 @@ test:
 memtest:
 	./scripts/build.sh -DBUILD_FOR_TEST=ON -DWITH_MEMCHECK=ON
 	./scripts/run_tests.sh
+	valgrind --tool=memcheck --leak-check=summary --leak-check=full --track-origins=yes --log-file=valgrind.log ./build/YourCollection
 
 check: 
 	./scripts/run_linters.sh
