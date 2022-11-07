@@ -1,0 +1,28 @@
+cmake_minimum_required(VERSION 3.10)
+
+project(net)
+
+set(CMAKE_CXX_STANDARD 17)
+
+if(BUILD_FOR_TEST)
+set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS} "-fprofile-arcs -ftest-coverage -fPIC -O0")
+elseif()
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-Wall -Wextra -Wpedantic -Werror")
+endif()
+
+file(GLOB SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/server/*.cpp)
+file(GLOB INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/server)
+
+message("SOURCES = ${SOURCES}")
+message("INCLUDE_DIRS = ${INCLUDE_DIRS}")
+
+add_library(${PROJECT_NAME} ${SOURCES} ${INCLUDE_DIRS})
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/server)
+
+#set(NET_LIB ${PROJECT_NAME} PARENT_SCOPE)
+#set(NET_INCLUDE_DIRS ${INCLUDE_DIRS} PARENT_SCOPE)
+
+set(NET_LIB ${PROJECT_NAME})
+set(NET_LIB ${NET_LIB} PARENT_SCOPE)
+set(NET_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/server)
+set(NET_INCLUDE_DIRS ${NET_INCLUDE_DIRS} PARENT_SCOPE)
